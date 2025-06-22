@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Thông tin cá nhân</h4>
+            </div>
+            <div class="card-body">
+                <form id="profileForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Địa chỉ</label>
+                        <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4>Thay đổi mật khẩu</h4>
+            </div>
+            <div class="card-body">
+                <form id="passwordForm">
+                    <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Mật khẩu hiện tại</label>
+                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">Mật khẩu mới</label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Xác nhận mật khẩu mới</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Đổi mật khẩu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+async function loadProfile() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+    
+    try {
+        const response = await fetch('/api/v1/users/profile', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        const result = await response.json();
+        const user = result.data || result;
+        
+        document.getElementById('name').value = user.name || '';
+        document.getElementById('email').value = user.email || '';
+        document.getElementById('phone').value = user.phone || '';
+        document.getElementById('address').value = user.address || '';
+    } catch (error) {
+        console.error('Error loading profile:', error);
+    }
+}
+
+document.getElementById('profileForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const token = localStorage.getItem('token');
+    const formData = new FormData(e.target);
+    const data = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        address: formData.get('address')
+    };
+    
+    try {
+        const response = await fetch('/api/v1/users/profile', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+            alert('Cập nhật thông tin thành công!');
+            // Update user info in localStorage
+            const user = JSON.parse(localStorage.getItem('user'));
+            Object.assign(user, data);
+            localStorage.setItem('user', JSON.stringify(user));
+        } else {
+            alert('Cập nhật thất bại!');
+        }
+    } catch (error) {
+        alert('Có lỗi xảy ra. Vui lòng thử lại.');
+    }
+});
+
+document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const newPassword = formData.get('newPassword');
+    const confirmPassword = formData.get('confirmPassword');
+    
+    if (newPassword !== confirmPassword) {
+        alert('Mật khẩu xác nhận không khớp!');
+        return;
+    }
+    
+    const token = localStorage.getItem('token');
+    const data = {
+        currentPassword: formData.get('currentPassword'),
+        newPassword: newPassword
+    };
+    
+    try {
+        const response = await fetch('/api/v1/users/change-password', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+            alert('Đổi mật khẩu thành công!');
+            e.target.reset();
+        } else {
+            alert('Đổi mật khẩu thất bại!');
+        }
+    } catch (error) {
+        alert('Có lỗi xảy ra. Vui lòng thử lại.');
+    }
+});
+
+// Load profile on page load
+document.addEventListener('DOMContentLoaded', loadProfile);
+</script>

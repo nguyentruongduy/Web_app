@@ -1,0 +1,95 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Duyệt đánh giá</h2>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Người dùng</th>
+                <th>Số sao</th>
+                <th>Nhận xét</th>
+                <th>Trạng thái</th>
+                <th>Ngày tạo</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="reviewsTableBody">
+            <!-- Review rows will be loaded here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+async function loadReviews() {
+    try {
+        const response = await fetch('/api/v1/reviews', {
+            credentials: 'include'
+        });
+        const result = await response.json();
+        const reviews = result || [];
+        displayReviews(reviews);
+    } catch (error) {
+        console.error('Error loading reviews:', error);
+        alert('Không thể tải danh sách đánh giá.');
+    }
+}
+
+function displayReviews(reviews) {
+    console.log('Reviews received by displayReviews:', reviews);
+    const reviewsTableBody = document.getElementById('reviewsTableBody');
+    reviewsTableBody.innerHTML = '';
+    reviews.forEach(review => {
+        const statusText = review.status === 'approved' ? 'Đã duyệt' : (review.status === 'rejected' ? 'Đã từ chối' : 'Chờ duyệt');
+        const statusColor = review.status === 'approved' ? 'success' : (review.status === 'rejected' ? 'danger' : 'warning');
+        const createdAt = new Date(review.createdAt).toLocaleDateString('vi-VN');
+
+        const row = `
+            <tr>
+                <td>${review.product?.name || 'N/A'}</td>
+                <td>${review.user?.name || 'N/A'}</td>
+                <td>${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</td>
+                <td>${review.comment.substring(0, 70)}...</td>
+                <td><span class="badge bg-${statusColor}">${statusText}</span></td>
+                <td>${createdAt}</td>
+                <td>
+                    ${review.status === 'pending' ? `
+                        <button class="btn btn-success btn-sm me-2" onclick="updateReviewStatus('${review._id}', 'approved')"><i class="fas fa-check"></i> Duyệt</button>
+                        <button class="btn btn-danger btn-sm" onclick="updateReviewStatus('${review._id}', 'rejected')"><i class="fas fa-times"></i> Từ chối</button>
+                    ` : '-'}
+                </td>
+            </tr>
+        `;
+        reviewsTableBody.innerHTML += row;
+    });
+}
+
+async function updateReviewStatus(reviewId, newStatus) {
+    try {
+        const response = await fetch(`/api/v1/reviews/${reviewId}/moderate`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({ status: newStatus })
+        });
+        const result = await response.json();
+        if (response.ok) {
+            alert(result.message || 'Cập nhật trạng thái đánh giá thành công!');
+            loadReviews(); // Reload reviews list
+        } else {
+            alert(result.message || 'Cập nhật trạng thái đánh giá thất bại.');
+        }
+    } catch (error) {
+        console.error('Error updating review status:', error);
+        alert('Có lỗi xảy ra. Vui lòng thử lại.');
+    }
+}
+
+// Initial load
+document.addEventListener('DOMContentLoaded', () => {
+    loadReviews();
+});
+</script> 

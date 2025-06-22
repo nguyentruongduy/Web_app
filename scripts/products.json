@@ -1,0 +1,660 @@
+[{
+  "_id": {
+    "$oid": "6857868410d92101cf8b055f"
+  },
+  "name": "MacBook Pro 14 inch (2023)",
+  "description": "Laptop Apple M2 Pro với màn hình Liquid Retina XDR tuyệt đẹp, hiệu năng vượt trội cho công việc chuyên nghiệp.",
+  "price": 45990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddc"
+  },
+  "stock": 15,
+  "image": "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111340_macbook-pro-2023-14in.png",
+  "ratingsAverage": 4.8,
+  "ratingsCount": 120,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.754Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:38:05.177Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0560"
+  },
+  "name": "Dell XPS 15 (2023)",
+  "description": "Laptop cao cấp với bộ vi xử lý Intel Core i9 thế hệ 13 và màn hình OLED sắc nét, thiết kế tinh tế và hiệu năng mạnh mẽ.",
+  "price": 38990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddc"
+  },
+  "stock": 10,
+  "image": "https://static.hungphatlaptop.com/wp-content/uploads/2023/03/DELL-XPS-15-9530-2023-H1.jpeg",
+  "ratingsAverage": 4.7,
+  "ratingsCount": 95,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:38:43.196Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0561"
+  },
+  "name": "HP Spectre x360 14",
+  "description": "Laptop 2-trong-1 cao cấp với màn hình OLED cảm ứng, thiết kế xoay gập linh hoạt và hiệu năng tối ưu cho công việc sáng tạo.",
+  "price": 35990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddc"
+  },
+  "stock": 8,
+  "image": "https://lapvip.vn/upload/products/original/hp-spectre-x360-14-2024-nightfall-black-1705650060.jpg",
+  "ratingsAverage": 4.6,
+  "ratingsCount": 80,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:39:11.299Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0562"
+  },
+  "name": "LG Gram 16 (2023)",
+  "description": "Laptop siêu nhẹ với màn hình lớn cho năng suất di động, pin khủng và hiệu suất ổn định, lý tưởng cho những người thường xuyên di chuyển.",
+  "price": 29990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddc"
+  },
+  "stock": 12,
+  "image": "https://lapvip.vn/upload/file/original/lg-gram-16-2023-lapvip-1-1695755195.jpg",
+  "ratingsAverage": 4.5,
+  "ratingsCount": 70,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:39:32.167Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0563"
+  },
+  "name": "ASUS Zenbook S 13 OLED",
+  "description": "Laptop OLED siêu mỏng nhẹ với hiệu năng mạnh mẽ, màn hình sống động, lý tưởng cho người dùng đòi hỏi cả hiệu suất và tính di động.",
+  "price": 33990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddc"
+  },
+  "stock": 7,
+  "image": "https://bizweb.dktcdn.net/thumb/large/100/372/934/products/asus-zenbook-s-13-oled-ux5304-cong-ket-noi-phai-9e25357e-b6b9-4347-a139-86c4ba590b03.jpg?v=1726072510127",
+  "ratingsAverage": 4.7,
+  "ratingsCount": 60,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:39:48.672Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0564"
+  },
+  "name": "Lenovo IdeaPad Slim 5 14 inch",
+  "description": "Laptop mỏng nhẹ cho công việc và học tập hàng ngày, với thiết kế hiện đại và hiệu năng đáng tin cậy.",
+  "price": 15990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddc"
+  },
+  "stock": 20,
+  "image": "https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/laptop-lenovo-ideapad-slim-5-14imh9-83da001yvn-05.jpg?v=1743907820073",
+  "ratingsAverage": 4.2,
+  "ratingsCount": 110,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:40:06.704Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0565"
+  },
+  "name": "iPhone 15 Pro Max 256GB",
+  "description": "Điện thoại thông minh hàng đầu của Apple với camera tiên tiến, chip A17 Bionic mạnh mẽ và thời lượng pin ấn tượng.",
+  "price": 34990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddd"
+  },
+  "stock": 25,
+  "image": "https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumb-600x600.jpg",
+  "ratingsAverage": 4.9,
+  "ratingsCount": 200,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0566"
+  },
+  "name": "Samsung Galaxy S24 Ultra 512GB",
+  "description": "Điện thoại Android cao cấp với S Pen tích hợp, camera 200MP và khả năng AI vượt trội.",
+  "price": 32990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddd"
+  },
+  "stock": 30,
+  "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/s/ss-s24-ultra-xam-222_1.png",
+  "ratingsAverage": 4.8,
+  "ratingsCount": 180,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:40:25.698Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0567"
+  },
+  "name": "Xiaomi 14 Pro",
+  "description": "Điện thoại thông minh mạnh mẽ với camera Leica chuyên nghiệp, hiệu năng cao và thiết kế sang trọng.",
+  "price": 21990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddd"
+  },
+  "stock": 35,
+  "image": "https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-14-pro-2.jpg",
+  "ratingsAverage": 4.7,
+  "ratingsCount": 150,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0568"
+  },
+  "name": "Google Pixel 8 Pro",
+  "description": "Điện thoại với camera Google AI tiên tiến, trải nghiệm Android gốc và cập nhật phần mềm dài hạn.",
+  "price": 25990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddd"
+  },
+  "stock": 22,
+  "image": "https://fdn2.gsmarena.com/vv/pics/google/google-pixel-8-pro-1.jpg",
+  "ratingsAverage": 4.6,
+  "ratingsCount": 130,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0569"
+  },
+  "name": "OnePlus 12",
+  "description": "Điện thoại flagship với sạc siêu nhanh, camera Hasselblad và màn hình mượt mà, mang lại trải nghiệm đỉnh cao.",
+  "price": 19990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddd"
+  },
+  "stock": 28,
+  "image": "https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-12-1.jpg",
+  "ratingsAverage": 4.5,
+  "ratingsCount": 140,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b056a"
+  },
+  "name": "Vivo X100 Pro",
+  "description": "Điện thoại chụp ảnh chuyên nghiệp với camera Zeiss và hiệu năng mạnh mẽ, lý tưởng cho những tín đồ nhiếp ảnh.",
+  "price": 24990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddd"
+  },
+  "stock": 18,
+  "image": "https://fdn2.gsmarena.com/vv/pics/vivo/vivo-x100-pro-1.jpg",
+  "ratingsAverage": 4.7,
+  "ratingsCount": 100,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b056b"
+  },
+  "name": "iPad Pro 12.9 inch (M2)",
+  "description": "Máy tính bảng mạnh mẽ với chip Apple M2, màn hình Liquid Retina XDR và khả năng làm việc như một chiếc laptop.",
+  "price": 29990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06dde"
+  },
+  "stock": 10,
+  "image": "https://ttcenter.com.vn/uploads/product/lujs2d1j-381-ipad-pro-12-9-inch-m2-5g-8gb-256gb-like-new.jpeg",
+  "ratingsAverage": 4.8,
+  "ratingsCount": 90,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:40:46.270Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b056c"
+  },
+  "name": "Samsung Galaxy Tab S9 Ultra",
+  "description": "Máy tính bảng Android cao cấp với màn hình Dynamic AMOLED 2X lớn, S Pen và hiệu năng vượt trội cho giải trí và công việc.",
+  "price": 27990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06dde"
+  },
+  "stock": 12,
+  "image": "https://lh6.googleusercontent.com/proxy/mbdwj7VJ7KF0K0HYg2U_TBtAhgH4BBwl8w4ngxSsHSzI1psonPR0hpi1Jf7hFerv42m6zMkx5XEuXnhvggCUs5E8SiWyL7bjXC9f0iOa0i_vOotYHaCd71ywDccS",
+  "ratingsAverage": 4.7,
+  "ratingsCount": 85,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:41:14.236Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b056d"
+  },
+  "name": "Lenovo Tab P11 Pro Gen 2",
+  "description": "Máy tính bảng Android với màn hình OLED và bút cảm ứng, lý tưởng cho giải trí và học tập.",
+  "price": 12990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06dde"
+  },
+  "stock": 18,
+  "image": "https://cdn.tgdd.vn/Files/2022/10/14/1478913/p11-2_1280x1280-800-resize.jpg",
+  "ratingsAverage": 4.5,
+  "ratingsCount": 70,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:41:31.305Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b056e"
+  },
+  "name": "Amazon Kindle Oasis (thế hệ 3)",
+  "description": "Máy đọc sách điện tử cao cấp với màn hình Paperwhite chống lóa và thiết kế tiện dụng, cho trải nghiệm đọc sách tuyệt vời.",
+  "price": 7990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06dde"
+  },
+  "stock": 20,
+  "image": "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/08/17/image-removebg-preview-1.png",
+  "ratingsAverage": 4.8,
+  "ratingsCount": 100,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b056f"
+  },
+  "name": "Xiaomi Pad 6 Pro",
+  "description": "Máy tính bảng Android hiệu năng cao với màn hình 144Hz siêu mượt, phù hợp cho gaming và đa nhiệm.",
+  "price": 11990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06dde"
+  },
+  "stock": 16,
+  "image": "https://product.hstatic.net/200000547251/product/pad-6-pro-1_70293cf23d914d39ab80dd8b11631146.jpg",
+  "ratingsAverage": 4.6,
+  "ratingsCount": 80,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:41:47.985Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0570"
+  },
+  "name": "Huawei MatePad Pro 13.2 inch",
+  "description": "Máy tính bảng OLED lớn với bút cảm ứng M-Pencil thế hệ 3, mang lại trải nghiệm viết và vẽ tự nhiên.",
+  "price": 19990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06dde"
+  },
+  "stock": 9,
+  "image": "https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/Huawei-Matepad-Pro-13.9-3.jpg",
+  "ratingsAverage": 4.7,
+  "ratingsCount": 50,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:42:09.792Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0571"
+  },
+  "name": "AirPods Pro (thế hệ 2)",
+  "description": "Tai nghe không dây chống ồn chủ động hàng đầu của Apple, với âm thanh sống động và chế độ xuyên âm thích ứng.",
+  "price": 6990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 40,
+  "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-pro-2-hero-select-202409_FMT_WHH?wid=750&hei=556&fmt=jpeg&qlt=90&.v=1724041668836",
+  "ratingsAverage": 4.9,
+  "ratingsCount": 250,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:42:26.653Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0572"
+  },
+  "name": "Samsung Galaxy Buds2 Pro",
+  "description": "Tai nghe không dây Hi-Fi 24bit với khả năng chống ồn chủ động, mang đến trải nghiệm âm thanh chất lượng cao.",
+  "price": 4990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 35,
+  "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-buds-2-pro-da-kich-hoat-thumb.png",
+  "ratingsAverage": 4.7,
+  "ratingsCount": 180,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:42:45.242Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0573"
+  },
+  "name": "Apple Watch Series 9",
+  "description": "Đồng hồ thông minh với nhiều tính năng theo dõi sức khỏe tiên tiến, màn hình sáng hơn và cử chỉ chạm đôi mới.",
+  "price": 11990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 20,
+  "image": "https://product.hstatic.net/200000850199/product/3_cae3c290c1304ada9b5dbb1c72748027_4a963c3f875a44c9b0aa57d35edf4c86.jpg",
+  "ratingsAverage": 4.8,
+  "ratingsCount": 150,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:43:00.909Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0574"
+  },
+  "name": "Samsung Galaxy Watch 6 Classic",
+  "description": "Đồng hồ thông minh với thiết kế cổ điển, vòng bezel vật lý và các tính năng sức khỏe toàn diện.",
+  "price": 9990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 22,
+  "image": "https://cdn.tgdd.vn/Products/Images/7077/310858/samsung-galaxy-watch6-classic-47mm-bac-1-750x500.png",
+  "ratingsAverage": 4.6,
+  "ratingsCount": 120,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:43:18.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0575"
+  },
+  "name": "Sony WF-1000XM5",
+  "description": "Tai nghe không dây chống ồn hàng đầu với chất lượng âm thanh tuyệt vời, thiết kế nhỏ gọn và thoải mái.",
+  "price": 7990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 28,
+  "image": "https://bizweb.dktcdn.net/100/479/913/products/tai-nghe-sony-wf-1000xm5-1.jpg?v=1690526477640",
+  "ratingsAverage": 4.9,
+  "ratingsCount": 210,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:43:44.953Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0576"
+  },
+  "name": "Bose QuietComfort Earbuds II",
+  "description": "Tai nghe không dây với khả năng chống ồn hàng đầu trong ngành và chất lượng âm thanh sống động đặc trưng của Bose.",
+  "price": 6490000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 25,
+  "image": "https://bizweb.dktcdn.net/thumb/1024x1024/100/451/485/products/bose-quietcomfort-earbuds-ii-5.jpg?v=1670224998453",
+  "ratingsAverage": 4.7,
+  "ratingsCount": 170,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:44:00.959Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0577"
+  },
+  "name": "Garmin Forerunner 965",
+  "description": "Đồng hồ thông minh GPS chuyên dụng cho chạy bộ và triathlon, với bản đồ màu sắc và thời lượng pin cực dài.",
+  "price": 16990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 10,
+  "image": "https://antien.vn/files/products/2023/04/06/Garmin-Forerunner-965.jpg",
+  "ratingsAverage": 4.8,
+  "ratingsCount": 95,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:44:15.909Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0578"
+  },
+  "name": "Fitbit Sense 2",
+  "description": "Đồng hồ thông minh theo dõi sức khỏe và thể chất toàn diện, bao gồm quản lý căng thẳng và theo dõi giấc ngủ.",
+  "price": 7490000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 18,
+  "image": "https://lagihitech.vn/wp-content/uploads/2022/09/Fitbit-Sense-2-Blue-Mist-Soft-Gold-Aluminum.jpg",
+  "ratingsAverage": 4.5,
+  "ratingsCount": 110,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:45:21.145Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b0579"
+  },
+  "name": "Jabra Elite 10",
+  "description": "Tai nghe không dây cao cấp với âm thanh không gian và sự thoải mái tối đa, lý tưởng cho nghe nhạc và gọi điện.",
+  "price": 5990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 30,
+  "image": "https://3kshop.vn/wp-content/uploads/2023/09/jabra-elite-10-9.jpeg",
+  "ratingsAverage": 4.6,
+  "ratingsCount": 160,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:45:08.015Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b057a"
+  },
+  "name": "Beats Studio Buds +",
+  "description": "Tai nghe không dây với âm thanh mạnh mẽ và khả năng chống ồn tốt, tương thích cả iOS và Android.",
+  "price": 4490000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 32,
+  "image": "https://bizweb.dktcdn.net/thumb/1024x1024/100/208/437/products/2831-tai-nghe-beats-studio-buds-black-songlongmedia-1.jpg?v=1665988643737",
+  "ratingsAverage": 4.4,
+  "ratingsCount": 140,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:45:38.257Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b057b"
+  },
+  "name": "Anker Soundcore Liberty 4 NC",
+  "description": "Tai nghe không dây chống ồn chủ động với thời lượng pin dài, âm thanh chi tiết và ứng dụng tùy chỉnh.",
+  "price": 3990000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 38,
+  "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/a/tai-nghe-bluetooth-anker-soundcore-liberty-4-_3_.png",
+  "ratingsAverage": 4.5,
+  "ratingsCount": 150,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:45:52.421Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857868410d92101cf8b057c"
+  },
+  "name": "Sony WH-CH720N",
+  "description": "Tai nghe không dây chống ồn thoải mái cho cả ngày, nhẹ nhàng và có chất lượng âm thanh cân bằng.",
+  "price": 3490000,
+  "category": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "stock": 28,
+  "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/o/sony-wh-ch720n-p_1.png",
+  "ratingsAverage": 4.3,
+  "ratingsCount": 130,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:28:52.755Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:46:09.315Z"
+  }
+}]

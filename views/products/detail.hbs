@@ -1,0 +1,178 @@
+<div class="row">
+    <div class="col-md-6">
+        <img id="productImage" src="/placeholder.svg?height=400&width=400" class="img-fluid rounded" alt="Product Image">
+    </div>
+    <div class="col-md-6">
+        <div id="productInfo">
+            <!-- Product info will be loaded here -->
+        </div>
+    </div>
+</div>
+
+<div class="mt-5">
+    <h4>Đánh giá sản phẩm</h4>
+    <div id="reviewsList">
+        <!-- Reviews will be loaded here -->
+    </div>
+    
+    {{#if user}}
+    <div class="mt-4">
+        <h5>Viết đánh giá</h5>
+        <form id="reviewForm">
+            <div class="mb-3">
+                <label for="rating" class="form-label">Đánh giá</label>
+                <select class="form-select" id="rating" name="rating" required>
+                    <option value="">Chọn số sao</option>
+                    <option value="5">5 sao - Xuất sắc</option>
+                    <option value="4">4 sao - Tốt</option>
+                    <option value="3">3 sao - Trung bình</option>
+                    <option value="2">2 sao - Kém</option>
+                    <option value="1">1 sao - Rất kém</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="comment" class="form-label">Nhận xét</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+        </form>
+    </div>
+    {{/if}}
+</div>
+
+<script>
+// Get product ID from server-side rendering or URL
+const productId = '{{productId}}' || window.location.pathname.split('/').pop();
+
+async function loadProductDetail() {
+    try {
+        const response = await fetch(`/api/v1/products/${productId}`);
+        const result = await response.json();
+        const product = result.data || result;
+        
+        document.getElementById('productImage').src = product.image || '/placeholder.svg?height=400&width=400';
+        document.getElementById('productImage').alt = product.name;
+        
+        document.getElementById('productInfo').innerHTML = `
+            <h1>${product.name}</h1>
+            <p class="text-muted">${product.description || ''}</p>
+            <h3 class="text-primary">${formatPrice(product.price)}</h3>
+            <p><strong>Còn lại:</strong> ${product.stock} sản phẩm</p>
+            <div class="mt-4">
+                <div class="input-group mb-3" style="max-width: 200px;">
+                    <button class="btn btn-outline-secondary" type="button" onclick="changeQuantity(-1)">-</button>
+                    <input type="number" class="form-control text-center" id="quantity" value="1" min="1" max="${product.stock}">
+                    <button class="btn btn-outline-secondary" type="button" onclick="changeQuantity(1)">+</button>
+                </div>
+                <button class="btn btn-primary btn-lg" onclick="addToCart('${product._id}', document.getElementById('quantity').value)">
+                    <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                </button>
+            </div>
+        `;
+        
+        document.title = product.name + ' - E-Commerce Store';
+    } catch (error) {
+        console.error('Error loading product:', error);
+        document.getElementById('productInfo').innerHTML = `
+            <div class="alert alert-danger">
+                <h4>Không thể tải thông tin sản phẩm</h4>
+                <p>Sản phẩm có thể không tồn tại hoặc đã bị xóa.</p>
+                <a href="/products" class="btn btn-primary">Quay lại danh sách sản phẩm</a>
+            </div>
+        `;
+    }
+}
+
+async function loadReviews() {
+    try {
+        const response = await fetch(`/api/v1/reviews/product/${productId}`);
+        const result = await response.json();
+        console.log('Raw API result for reviews:', result);
+        // The reviews API returns reviews nested under a 'reviews' key
+        const reviews = result.reviews || [];
+        console.log('Processed reviews array:', reviews);
+        
+        const reviewsList = document.getElementById('reviewsList');
+        if (reviews.length === 0) {
+            reviewsList.innerHTML = '<p class="text-muted">Chưa có đánh giá nào.</p>';
+            return;
+        }
+        
+        reviewsList.innerHTML = reviews.map(review => `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="card-title">${review.user?.name || 'Người dùng'}</h6>
+                        <div class="text-warning">
+                            ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+                        </div>
+                    </div>
+                    <p class="card-text">${review.comment}</p>
+                    <small class="text-muted">${new Date(review.createdAt).toLocaleDateString('vi-VN')}</small>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Error loading reviews:', error);
+    }
+}
+
+function changeQuantity(change) {
+    const quantityInput = document.getElementById('quantity');
+    const currentValue = parseInt(quantityInput.value);
+    const newValue = currentValue + change;
+    const maxValue = parseInt(quantityInput.max);
+    
+    if (newValue >= 1 && newValue <= maxValue) {
+        quantityInput.value = newValue;
+    }
+}
+
+// Handle review form submission
+document.getElementById('reviewForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Vui lòng đăng nhập để viết đánh giá');
+        window.location.href = '/login';
+        return;
+    }
+    
+    const formData = new FormData(e.target);
+    const data = {
+        productId: productId,
+        rating: parseInt(formData.get('rating')),
+        comment: formData.get('comment')
+    };
+    
+    try {
+        const response = await fetch('/api/v1/reviews', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+            alert('Đánh giá đã được gửi thành công!');
+            e.target.reset();
+            loadReviews(); // Reload reviews
+        } else {
+            const error = await response.json();
+            alert(error.message || 'Không thể gửi đánh giá');
+        }
+    } catch (error) {
+        console.error('Error submitting review:', error);
+        alert('Có lỗi xảy ra. Vui lòng thử lại.');
+    }
+});
+
+// Load data on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadProductDetail();
+    loadReviews();
+});
+</script>

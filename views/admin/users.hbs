@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Quản lý Người dùng</h2>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Vai trò</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="usersTableBody">
+            <!-- User rows will be loaded here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+async function loadUsers() {
+    // No need to get token from localStorage; rely on HTTP-only cookie
+    // const token = localStorage.getItem('token');
+    try {
+        const response = await fetch('/api/v1/admin/users', {
+            credentials: 'include' // Ensure cookies are sent
+            // headers: {
+            //     'Authorization': `Bearer ${token}`
+            // }
+        });
+        const result = await response.json();
+        // The users API directly returns an array, not an object with a 'data' field
+        const users = result || [];
+        displayUsers(users);
+    } catch (error) {
+        console.error('Error loading users:', error);
+        alert('Không thể tải danh sách người dùng.');
+    }
+}
+
+function displayUsers(users) {
+    const usersTableBody = document.getElementById('usersTableBody');
+    usersTableBody.innerHTML = '';
+    users.forEach(user => {
+        const statusText = user.isActive ? 'Hoạt động' : 'Bị khóa';
+        const statusClass = user.isActive ? 'badge bg-success' : 'badge bg-danger';
+        const actionText = user.isActive ? 'Khóa' : 'Kích hoạt';
+        const actionClass = user.isActive ? 'btn-danger' : 'btn-success';
+
+        const row = `
+            <tr>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.role}</td>
+                <td>${user.phone || 'N/A'}</td>
+                <td>${user.address || 'N/A'}</td>
+                <td><span class="${statusClass}">${statusText}</span></td>
+                <td>
+                    <button class="btn btn-sm ${actionClass}" onclick="toggleUserStatus('${user._id}', ${user.isActive})">
+                        <i class="fas ${user.isActive ? 'fa-lock' : 'fa-unlock'}"></i> ${actionText}
+                    </button>
+                </td>
+            </tr>
+        `;
+        usersTableBody.innerHTML += row;
+    });
+}
+
+async function toggleUserStatus(userId, currentStatus) {
+    // No need to get token from localStorage; rely on HTTP-only cookie
+    // const token = localStorage.getItem('token');
+    const newStatus = !currentStatus;
+    try {
+        const response = await fetch(`/api/v1/admin/users/${userId}/status`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Authorization': `Bearer ${token}`
+            },
+            credentials: 'include', // Ensure cookies are sent
+            body: JSON.stringify({ isActive: newStatus })
+        });
+        const result = await response.json();
+        if (response.ok) {
+            alert(result.message || 'Cập nhật trạng thái thành công!');
+            loadUsers(); // Reload users list
+        } else {
+            alert(result.message || 'Cập nhật trạng thái thất bại.');
+        }
+    } catch (error) {
+        console.error('Error toggling user status:', error);
+        alert('Có lỗi xảy ra. Vui lòng thử lại.');
+    }
+}
+
+// Initial load
+document.addEventListener('DOMContentLoaded', () => {
+    loadUsers();
+});
+</script> 

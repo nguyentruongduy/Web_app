@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "6857819145d90bd0ece06ddc"
+  },
+  "name": "Laptop",
+  "description": "Các loại máy tính xách tay từ phổ thông đến cao cấp, phục vụ mọi nhu cầu học tập, làm việc và giải trí.",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:07:45.022Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:07:45.022Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857819145d90bd0ece06ddd"
+  },
+  "name": "Điện thoại",
+  "description": "Các dòng điện thoại di động thông minh mới nhất từ các thương hiệu hàng đầu thế giới.",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:07:45.023Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:07:45.023Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857819145d90bd0ece06dde"
+  },
+  "name": "Máy tính bảng",
+  "description": "iPad và các loại tablet khác, đa năng cho công việc, học tập và giải trí.",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:07:45.023Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:07:45.023Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6857819145d90bd0ece06ddf"
+  },
+  "name": "Phụ kiện",
+  "description": "Phụ kiện điện tử đa dạng bao gồm tai nghe, đồng hồ thông minh, chuột, bàn phím và nhiều hơn nữa.",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-06-22T04:07:45.023Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T04:07:45.023Z"
+  }
+}]

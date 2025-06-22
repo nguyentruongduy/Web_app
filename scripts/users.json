@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "685143a51ff58193ca6c6f0c"
+  },
+  "name": "Admin User",
+  "email": "admin@example.com",
+  "passwordHash": "$2b$12$NyXcTyew8sR4hrXryHCos.dkkUnaytKXr6v3e2bnqrFeUeK6w/RUW",
+  "role": "admin",
+  "phone": "0123456789",
+  "address": "123 Admin Street, City",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-06-17T10:29:57.493Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-22T03:29:25.380Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685143a51ff58193ca6c6f0e"
+  },
+  "name": "Regular User",
+  "email": "user@example.com",
+  "passwordHash": "$2b$12$3syuqEqLal7ca5XUyrswL.bJG/hyX0Zkofb1KOFwWlnCPsZkd2XZW",
+  "role": "user",
+  "phone": "0987654321",
+  "address": "456 User Street, City",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-06-17T10:29:57.768Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-17T10:29:57.768Z"
+  },
+  "__v": 0
+}]

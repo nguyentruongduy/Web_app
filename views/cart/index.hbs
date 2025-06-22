@@ -1,0 +1,240 @@
+<h2>Giỏ hàng của bạn</h2>
+
+<div id="cartContent">
+    <!-- Cart content will be loaded here -->
+</div>
+
+<script>
+let currentCart = null;
+
+async function loadCart() {
+    // No need to get token from localStorage; rely on HTTP-only cookie
+    // if (!token) {
+    //     window.location.href = '/login';
+    //     return;
+    // }
+    
+    try {
+        const response = await fetch('/api/v1/cart/user', {
+            // credentials: 'include' ensures cookies are sent
+            credentials: 'include'
+            // headers: {
+            //     'Authorization': `Bearer ${token}`
+            // }
+        });
+        
+        const result = await response.json();
+        const cart = result.data || result;
+        
+        currentCart = cart; // Store the fetched cart globally
+
+        displayCart(cart);
+    } catch (error) {
+        console.error('Error loading cart:', error);
+    }
+}
+
+function displayCart(cart) {
+    const cartContent = document.getElementById('cartContent');
+    
+    console.log('Cart object received by displayCart:', cart);
+
+    if (!cart || !cart.products || cart.products.length === 0) {
+        cartContent.innerHTML = `
+            <div class="text-center py-5">
+                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                <h4>Giỏ hàng trống</h4>
+                <p class="text-muted">Hãy thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm</p>
+                <a href="/products" class="btn btn-primary">Tiếp tục mua sắm</a>
+            </div>
+        `;
+        return;
+    }
+    
+    let totalAmount = 0;
+    const cartItems = cart.products.map(item => {
+        console.log('Processing cart item:', item); // Log each item
+        console.log('Product details in item.productId:', item.productId); // Log populated product
+
+        // Ensure item.productId and item.productId.price exist before accessing
+        const itemPrice = item.productId?.price || 0; 
+        const itemTotal = itemPrice * item.quantity;
+        totalAmount += itemTotal;
+        
+        return `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <img src="${item.productId.image || '/placeholder.svg?height=100&width=100'}" class="img-fluid rounded" alt="${item.productId.name}">
+                        </div>
+                        <div class="col-md-4">
+                            <h5>${item.productId.name}</h5>
+                            <p class="text-muted">${item.productId.description || ''}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="h6">${formatPrice(item.productId.price)}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity('${cart._id}', '${item.productId._id}', ${item.quantity - 1})">-</button>
+                                <input type="number" class="form-control form-control-sm text-center" value="${item.quantity}" readonly>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity('${cart._id}', '${item.productId._id}', ${item.quantity + 1})">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <span class="h6">${formatPrice(itemTotal)}</span>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-danger btn-sm" onclick="removeFromCart('${cart._id}', '${item.productId._id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    cartContent.innerHTML = `
+        <div class="row">
+            <div class="col-md-8">
+                ${cartItems}
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Tổng cộng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Tổng tiền:</span>
+                            <span class="h5">${formatPrice(totalAmount)}</span>
+                        </div>
+                        <button class="btn btn-success w-100" onclick="proceedToCheckout()">
+                            Tiến hành thanh toán
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+async function updateQuantity(cartId, productId, newQuantity) {
+    if (newQuantity < 1) return;
+    
+    // No need to get token from localStorage; rely on HTTP-only cookie
+    // const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`/api/v1/cart/${cartId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Authorization': `Bearer ${token}`
+            },
+            credentials: 'include', // Ensure cookies are sent
+            body: JSON.stringify({
+                productId: productId,
+                quantity: newQuantity
+            })
+        });
+        
+        if (response.ok) {
+            loadCart();
+            updateCartCount();
+        }
+    } catch (error) {
+        console.error('Error updating quantity:', error);
+    }
+}
+
+async function removeFromCart(cartId, productId) {
+    // No need to get token from localStorage; rely on HTTP-only cookie
+    // const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`/api/v1/cart/${cartId}/products/${productId}`, {
+            method: 'DELETE',
+            credentials: 'include' // Ensure cookies are sent
+            // headers: {
+            //     'Authorization': `Bearer ${token}`
+            // }
+        });
+        
+        if (response.ok) {
+            loadCart();
+            updateCartCount();
+        }
+    } catch (error) {
+        console.error('Error removing from cart:', error);
+    }
+}
+
+async function proceedToCheckout() {
+    // No need to get token from localStorage; rely on HTTP-only cookie
+    // const token = localStorage.getItem('token');
+    // if (!token) {
+    //     window.location.href = '/login';
+    //     return;
+    // }
+    
+    if (!currentCart || !currentCart.products || currentCart.products.length === 0) {
+        alert('Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi thanh toán.');
+        return;
+    }
+
+    const orderItems = currentCart.products.map(item => ({
+        productId: item.productId._id,
+        quantity: item.quantity,
+        price: item.productId.price // Use the populated product's price
+    }));
+
+    // Placeholder shipping address - in a real app, this would come from a form or user profile
+    const shippingAddress = {
+        street: '123 Đường Chính',
+        city: 'Thành phố HCM',
+        state: 'Hồ Chí Minh',
+        zipCode: '700000',
+        country: 'Việt Nam'
+    };
+
+    try {
+        // Create order from cart
+        const response = await fetch('/api/v1/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Authorization': `Bearer ${token}`
+            },
+            credentials: 'include', // Ensure cookies are sent
+            body: JSON.stringify({
+                items: orderItems,
+                shippingAddress: shippingAddress,
+                paymentMethod: 'COD' // Cash on delivery (matching enum)
+            })
+        });
+        
+        if (response.ok) {
+            const result = await response.json();
+            alert('Đặt hàng thành công! Mã đơn hàng: ' + result.data._id);
+            // After successful order, clear the cart visually and from backend
+            await fetch(`/api/v1/cart/${currentCart._id}/clear`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+            loadCart(); // Reload cart to show empty state
+            updateCartCount(); // Update cart count in navbar
+            window.location.href = '/orders';
+        } else {
+            const error = await response.json();
+            alert(error.message || 'Không thể đặt hàng');
+        }
+    } catch (error) {
+        console.error('Error creating order:', error);
+        alert('Có lỗi xảy ra. Vui lòng thử lại.');
+    }
+}
+
+// Load cart on page load
+document.addEventListener('DOMContentLoaded', loadCart);
+</script>

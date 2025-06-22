@@ -1,0 +1,158 @@
+<h2>Chi tiết đơn hàng</h2>
+
+<div id="orderDetails">
+    <!-- Order details will be loaded here -->
+</div>
+
+<script>
+    async function loadOrderDetails() {
+        const orderId = '{{orderId}}';
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = '/login';
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/v1/orders/${orderId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch order details');
+            }
+
+            const result = await response.json();
+            const order = result.data;
+            
+            displayOrderDetails(order);
+
+        } catch (error) {
+            console.error('Error loading order details:', error);
+            document.getElementById('orderDetails').innerHTML = `<p class="text-danger">Không thể tải chi tiết đơn hàng.</p>`;
+        }
+    }
+
+    function displayOrderDetails(order) {
+        const detailsContainer = document.getElementById('orderDetails');
+
+        if (!order) {
+            detailsContainer.innerHTML = `<p>Không tìm thấy đơn hàng.</p>`;
+            return;
+        }
+
+        detailsContainer.innerHTML = `
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-0">Đơn hàng #${order._id}</h5>
+                        <small class="text-muted">Ngày đặt: ${new Date(order.createdAt).toLocaleDateString('vi-VN')}</small>
+                    </div>
+                    <div>
+                        <span class="badge bg-${getStatusColor(order.status)}">${getStatusText(order.status)}</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Địa chỉ giao hàng</h6>
+                            <address>
+                                ${order.shippingAddress.street}<br>
+                                ${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zipCode}<br>
+                                ${order.shippingAddress.country}
+                            </address>
+                            <p><strong>Phương thức thanh toán:</strong> ${order.paymentMethod}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Tóm tắt đơn hàng</h6>
+                            <p><strong>Tổng tiền:</strong> <span class="fw-bold fs-5">${formatPrice(order.totalAmount)}</span></p>
+                             ${order.status === 'pending' ? `
+                                <button class="btn btn-danger" onclick="cancelOrder('${order._id}')">Hủy đơn hàng</button>
+                            ` : ''}
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h6>Sản phẩm trong đơn hàng</h6>
+                    <ul class="list-group list-group-flush">
+                        ${order.items.map(item => `
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="${item.productId.image || '/placeholder.svg?height=60&width=60'}" class="me-3" style="width: 60px; height: 60px; object-fit: cover;" alt="${item.productId.name}">
+                                    <div>
+                                        <strong>${item.productId.name}</strong>
+                                        <br>
+                                        <small class="text-muted">Số lượng: ${item.quantity}</small>
+                                    </div>
+                                </div>
+                                <span>${formatPrice(item.price * item.quantity)}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            </div>
+        `;
+    }
+     async function cancelOrder(orderId) {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = '/login';
+            return;
+        }
+
+        if (!confirm('Bạn có chắc muốn hủy đơn hàng này không?')) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/v1/orders/${orderId}/cancel`, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                const errorResult = await response.json();
+                throw new Error(errorResult.message || 'Failed to cancel order');
+            }
+            // Reload to show the updated status
+            window.location.reload(); 
+            
+        } catch (error) {
+            console.error('Error cancelling order:', error);
+            alert(`Lỗi: ${error.message}`);
+        }
+    }
+
+    function getStatusColor(status) {
+        const colors = {
+            'pending': 'warning',
+            'confirmed': 'info',
+            'shipped': 'primary',
+            'delivered': 'success',
+            'cancelled': 'danger'
+        };
+        return colors[status] || 'secondary';
+    }
+
+    function getStatusText(status) {
+        const texts = {
+            'pending': 'Chờ xử lý',
+            'confirmed': 'Đã xác nhận',
+            'shipped': 'Đang giao',
+            'delivered': 'Đã giao',
+            'cancelled': 'Đã hủy'
+        };
+        return texts[status] || status;
+    }
+
+    function formatPrice(price) {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadOrderDetails);
+</script> 
