@@ -60,12 +60,6 @@ const importData = async () => {
         await Category.deleteMany();
         await Product.deleteMany();
 
-        // Drop all indexes to avoid duplicate key errors
-        console.log('Dropping existing indexes...');
-        await User.collection.dropIndexes();
-        await Category.collection.dropIndexes();
-        await Product.collection.dropIndexes();
-
         console.log('Data cleared...');
 
         // Check if JSON files exist

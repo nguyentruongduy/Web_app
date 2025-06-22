@@ -1,4 +1,16 @@
 services:
+  # MongoDB Service
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
   # Node.js App Service
   app:
     build: .
@@ -7,8 +19,8 @@ services:
     environment:
       # IMPORTANT: The MONGO_URI must point to the 'mongo' service name.
       # Docker Compose handles the network resolution automatically.
-      MONGO_URI: mongodb+srv://duy:<db_password>@cluster0.5oseach.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-      JWT_SECRET: ${JWT_SECRET:-your_default_secret_key_if_not_set}
+      MONGO_URI: mongodb+srv://duy:Duy171103@cluster0.5oseach.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      JWT_SECRET: your_jwt_secret_key2025
       PORT: 3000
     volumes:
       # Syncs the local code with the container for development
@@ -18,15 +30,6 @@ services:
       - /usr/src/app/node_modules
     depends_on:
       - mongo
-    restart: always
-
-  # MongoDB Database Service
-  mongo:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
     restart: always
 
 # Define a volume for persisting MongoDB data
