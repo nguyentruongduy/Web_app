@@ -7,7 +7,7 @@ services:
     environment:
       # IMPORTANT: The MONGO_URI must point to the 'mongo' service name.
       # Docker Compose handles the network resolution automatically.
-      MONGO_URI: mongodb+srv://duy:Duy171103@cluster0.5oseach.mongodb.net/
+      MONGO_URI: mongodb+srv://duy:<db_password>@cluster0.5oseach.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
       JWT_SECRET: ${JWT_SECRET:-your_default_secret_key_if_not_set}
       PORT: 3000
     volumes:
